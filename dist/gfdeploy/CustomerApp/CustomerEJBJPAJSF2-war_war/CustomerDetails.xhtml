@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <f:metadata>
+    <f:viewParam name="id" value="#{customerMBean.idDetails}" />
+  </f:metadata>
+  <h:head>
+    <title>Détails du Client #{customerMBean.idDetails}</title>
+  </h:head>
+  <h:body>
+    <f:view>
+      <f:event type="preRenderView" listener="#{customerMBean.lireClient}" />
+      <h:form>
+        <h1><h:outputText value="Create/Edit"/></h1>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="CustomerId:" for="customerId" />
+          <h:inputText id="customerId" value="#{customerMBean.details.customerId}" title="CustomerId" required="true" requiredMessage="The CustomerId field is required."/>
+          <h:outputLabel value="Zip:" for="zip" />
+          <h:inputText id="zip" value="#{customerMBean.details.zip}" title="Zip" required="true" requiredMessage="The Zip field is required."/>
+          <h:outputLabel value="Name:" for="name" />
+          <h:inputText id="name" value="#{customerMBean.details.name}" title="Name" />
+          <h:outputLabel value="Addressline1:" for="addressline1" />
+          <h:inputText id="addressline1" value="#{customerMBean.details.addressline1}" title="Addressline1" />
+          <h:outputLabel value="Addressline2:" for="addressline2" />
+          <h:inputText id="addressline2" value="#{customerMBean.details.addressline2}" title="Addressline2" />
+          <h:outputLabel value="City:" for="city" />
+          <h:inputText id="city" value="#{customerMBean.details.city}" title="City" />
+          <h:outputLabel value="State:" for="state" />
+          <h:inputText id="state" value="#{customerMBean.details.state}" title="State" />
+          <h:outputLabel value="Phone:" for="phone" />
+          <h:inputText id="phone" value="#{customerMBean.details.phone}" title="Phone" />
+          <h:outputLabel value="Fax:" for="fax" />
+          <h:inputText id="fax" value="#{customerMBean.details.fax}" title="Fax" />
+          <h:outputLabel value="Email:" for="email" />
+          <h:inputText id="email" value="#{customerMBean.details.email}" title="Email" />
+          <h:outputLabel value="CreditLimit:" for="creditLimit" />
+          <h:inputText id="creditLimit" value="#{customerMBean.details.creditLimit}" title="CreditLimit" />
+          <h:outputLabel value="DiscountCode:" for="discountCode" />
+
+          <h:selectOneMenu id="discountCode" value="#{customerMBean.details.discountCode}" 
+                           title="DiscountCode" required="true" 
+                           requiredMessage="The DiscountCode field is required.">
+            <f:selectItems value="#{customerMBean.discountCodes}"
+                           var="item" itemLabel="#{item.discountCode} (#{item.rate} %)"/>
+          </h:selectOneMenu>
+
+
+          <h:commandButton id="back" value="Back" immediate="true" action="#{customerMBean.list()}"/>  
+          <h:commandButton id="update" value="Update" action="#{customerMBean.update}"/>  
+        </h:panelGrid>
+      </h:form>
+    </f:view>
+
+  </h:body>
+</html>
+
